@@ -18,7 +18,7 @@ const http = createServer(app);
 const PORT = process.env.PORT || 8080;
 
 let MongoDB_URI =
-	process.env.mongoDB_URI || 'mongodb://127.0.0.1:27017/technonatura-server';
+	process.env.mongoDB_URI || 'mongodb://127.0.0.1:27017/foorum-server';
 mongoose.connect(MongoDB_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
