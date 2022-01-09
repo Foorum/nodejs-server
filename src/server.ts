@@ -51,7 +51,7 @@ app.get('/', (req: Request, res: Response): void => {
 
 async function startServer() {
 	await new Promise((resolve) => {
-		console.log(`Server Running here 👉 http://localhost:${PORT}`);
+		console.log(`Server Running here : http://localhost:${PORT}`);
 
 		return http.listen({ port: PORT });
 	})
