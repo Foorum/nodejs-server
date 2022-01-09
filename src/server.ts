@@ -4,11 +4,9 @@ import * as cors from 'cors';
 import * as helmet from 'helmet';
 
 import { createServer } from 'http';
-import { Server } from 'socket.io';
 
 import methodOverride from 'method-override';
 import mongoose from 'mongoose';
-import { ApolloServer, gql } from 'apollo-server-express';
 
 const db = mongoose.connection;
 const app: Application = express();
