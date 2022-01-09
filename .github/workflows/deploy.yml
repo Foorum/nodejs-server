@@ -19,7 +19,7 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh                
 
-            cd ~
+            ls
             cd forum
             ls
             cd server
