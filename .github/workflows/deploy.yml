@@ -19,13 +19,13 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh                
 
-            cd /var/www
+            cd /foorum/server
             ls
-            git clone https://aldhanekaa:${{secrets.GITHUB_TOKEN}}@github.com/aldhaneka-lab/DO-nodejs-autodeploy.git
-            pm2 stop nodejs-app
-            rm -rf nodejs.sg.aldhaneka.me
-            mv /var/www/DO-nodejs-autodeploy /var/www/nodejs.sg.aldhaneka.me
-            cd nodejs.sg.aldhaneka.me
+            git clone https://aldhanekaa:${{secrets.GITHUB_TOKEN}}@github.com/Foorum/nodejs-server.git
+            pm2 stop foorum-server
+            rm -rf foorum.aldhaneka.space
+            mv /foorum/server/nodejs-server /var/www/foorum.aldhaneka.space
+            cd foorum.aldhaneka.space
             npm install
-            pm2 start server.js --name nodejs-app
+            pm2 start dist/src/server.js --name foorum-server
             sudo service nginx restart
