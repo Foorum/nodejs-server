@@ -24,8 +24,9 @@ jobs:
             git clone https://aldhanekaa:${{secrets.GITHUB_TOKEN}}@github.com/Foorum/nodejs-server.git
             pm2 stop foorum-server
             rm -rf foorum.aldhaneka.space
-            mv /foorum/server/nodejs-server /var/www/foorum.aldhaneka.space
+            mv /foorum/server/nodejs-server /foorum/server/foorum.aldhaneka.space
             cd foorum.aldhaneka.space
             npm install
+            npm run build
             pm2 start dist/src/server.js --name foorum-server
             sudo service nginx restart
