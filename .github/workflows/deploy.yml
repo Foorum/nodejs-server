@@ -1,0 +1,31 @@
+name: Build & Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Nodejs App
+        uses: appleboy/ssh-action@v0.1.2
+
+        with:
+          host: ${{secrets.SSH_HOST}} # IP address of the server you wish to ssh into
+          key: ${{secrets.SSH_KEY}} # Private or public key of the server
+          username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
+
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh                
+
+            cd /var/www
+            ls
+            git clone https://aldhanekaa:${{secrets.GITHUB_TOKEN}}@github.com/aldhaneka-lab/DO-nodejs-autodeploy.git
+            pm2 stop nodejs-app
+            rm -rf nodejs.sg.aldhaneka.me
+            mv /var/www/DO-nodejs-autodeploy /var/www/nodejs.sg.aldhaneka.me
+            cd nodejs.sg.aldhaneka.me
+            npm install
+            pm2 start server.js --name nodejs-app
+            sudo service nginx restart
