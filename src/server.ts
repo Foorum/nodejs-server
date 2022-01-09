@@ -51,6 +51,19 @@ app.get('/', (req: Request, res: Response): void => {
 	res.send('Hello Typescript with Node.js!');
 });
 
-app.listen(PORT, (): void => {
-	console.log(`Server Running here 👉 https://localhost:${PORT}`);
-});
+async function startServer() {
+	await new Promise((resolve) => {
+		console.log(`Server Running here 👉 http://localhost:${PORT}`);
+
+		return http.listen({ port: PORT });
+	})
+		.then(() => {
+			return { app };
+		})
+
+		.catch(() => {
+			return { app };
+		});
+}
+
+startServer();
